@@ -13,7 +13,7 @@ const mongodbPath = "mongodb+srv://AnirudhAwake:anirudh01@cluster0.ycul2.mongodb
 mongoose.connect(mongodbPath).then(
     function(){
         app.get("/", function(req,res){
-          const response= {message: "API works"};
+          const response= {statuscode: res.statusCode, message: "API works"};
           res.json(response);
       
       });
