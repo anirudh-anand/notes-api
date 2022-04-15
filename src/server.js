@@ -17,39 +17,8 @@ mongoose.connect(mongodbPath).then(
           res.json(response);
       
       });
-      app.post("/notes/list",async function(req,res){
-          var notes=await Note.find({
-              userid:req.body.userid
-          });
-          res.json(notes);
-      
-      });
-      app.post("/notes/add",async function(req,res){
-          await Note.deleteOne({
-              id:req.body.id
-          });
-         
-      var newNote = new Note({
-           id: req.body.id,
-           userid: req.body.userid,
-           title: req.body.title,
-           content: req.body.content
-       });
-       await newNote.save();
-
-       const response = {
-           message: "new note createdid: " + `id: ${req.body.id}` };
-           res.json(response);
-
-       });
-
-       app.post("/notes/delete", async function(req, res){
-           await Note.deleteOne({id: req.body.id});
-          
-           const response = {
-            message: "new note deleted: " + `id: ${req.body.id}` };
-            res.json(response);
-       })
+    const noteRouter= require('./routes/Note');
+    app.use("/notes", noteRouter);
       
     
     });
