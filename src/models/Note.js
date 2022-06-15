@@ -2,17 +2,9 @@
 //1.Define Schema -> Note: id,userid,title,content, dateadded
 //2.Create Model-> <model name> 
 
-const { triggerAsyncId } = require('async_hooks');
 const mongoose=require('mongoose');
 
 const noteSchema =mongoose.Schema({
-  id: {
-      type:String,
-      unique:true,
-      required: true,
-    
-
-  },
   userid:{
     type:String,
     required: true,
@@ -24,14 +16,9 @@ const noteSchema =mongoose.Schema({
   },
   content:{
       type: String,
-  },
-
-  dateAdded:{
-      type: Date,
-      default: Date.now,
-
   }
-
+},{
+  timestamps: true,
 });
 
 module.exports= mongoose.model("Note",noteSchema);
