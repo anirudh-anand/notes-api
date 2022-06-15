@@ -19,12 +19,12 @@ router.get("/:id", getNoteById);
 router.put("/:id", updateNoteById);
 
 router.post("/add", async function (req, res) {
-  var newNote = new Note({
+  var newNote = {
     userid: req.body.userid,
     title: req.body.title,
     content: req.body.content,
-  });
-  await newNote.save();
+  };
+  await Note.create(newNote);
 
   const response = { message: "created" };
   res.status(200).json(response);
